@@ -1,0 +1,45 @@
+# chart-repo: ingress-nginx/ingress-nginx
+
+nameOverride: ingress-nginx
+
+controller:
+  kind: Deployment
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50
+  resources:
+  #  limits:
+  #    cpu: 100m
+  #    memory: 90Mi
+    requests:
+      cpu: 100m
+      memory: 90Mi
+  config:
+    proxy-protocol: "true"
+    real-ip-header: "proxy_protocol"
+    set-real-ip-from: "0.0.0.0/0"
+    use-forwarded-headers: "true"
+  service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "*.tools.k8s.jwdevtools.cf"
+      external-dns.alpha.kubernetes.io/ttl: "300"
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+      service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
+      service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:ap-northeast-2:446804614856:certificate/d832890a-6436-4c60-ab71-84723908d894"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+      service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    targetPorts:
+      http: http
+      https: http
+  stats:
+    enabled: true
+  # metrics:
+  #   enabled: true
+  #   serviceMonitor:
+  #     enabled: true
+  #     additionalLabels:
+  #       release: prometheus-operator

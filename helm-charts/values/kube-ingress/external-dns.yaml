@@ -1,0 +1,23 @@
+# chart-repo: bitnami/external-dns
+
+nameOverride: external-dns
+
+sources:
+  - service
+#  - ingress
+
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: node.kubernetes.io/role
+#               operator: In
+#               values:
+#                 - ops
+
+podAnnotations:
+  iam.amazonaws.com/role: "jwtools-v1-worker-route53"
+
+rbac:
+  create: true

@@ -1,0 +1,64 @@
+{
+  "variable": {
+    "argo_argo_cd": {
+      "default": "2.5.0",
+      "description": "argo/argo-cd"
+    },
+    "autoscaler_cluster_autoscaler_chart": {
+      "default": "1.0.3",
+      "description": "autoscaler/cluster-autoscaler-chart"
+    },
+    "bitnami_external_dns": {
+      "default": "3.2.3",
+      "description": "bitnami/external-dns"
+    },
+    "harbor_harbor": {
+      "default": "1.4.1",
+      "description": "harbor/harbor"
+    },
+    "ingress_nginx_ingress_nginx": {
+      "default": "2.16.0",
+      "description": "ingress-nginx/ingress-nginx"
+    },
+    "stable_chartmuseum": {
+      "default": "2.13.0",
+      "description": "stable/chartmuseum"
+    },
+    "stable_docker_registry": {
+      "default": "1.9.4",
+      "description": "stable/docker-registry"
+    },
+    "stable_efs_provisioner": {
+      "default": "0.12.1",
+      "description": "stable/efs-provisioner"
+    },
+    "stable_grafana": {
+      "default": "5.3.5",
+      "description": "stable/grafana"
+    },
+    "stable_k8s_spot_termination_handler": {
+      "default": "1.4.9",
+      "description": "stable/k8s-spot-termination-handler"
+    },
+    "stable_kube2iam": {
+      "default": "2.5.0",
+      "description": "stable/kube2iam"
+    },
+    "stable_kube_state_metrics": {
+      "default": "2.8.11",
+      "description": "stable/kube-state-metrics"
+    },
+    "stable_metrics_server": {
+      "default": "2.11.1",
+      "description": "stable/metrics-server"
+    },
+    "stable_prometheus_adapter": {
+      "default": "2.4.0",
+      "description": "stable/prometheus-adapter"
+    },
+    "stable_prometheus_operator": {
+      "default": "8.15.14",
+      "description": "stable/prometheus-operator"
+    }
+  }
+}

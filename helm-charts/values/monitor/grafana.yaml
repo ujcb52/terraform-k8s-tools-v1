@@ -1,0 +1,81 @@
+nameOverride: grafana
+
+adminUser: "admin"
+adminPassword: "password"
+
+podAnnotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+  hosts:
+    - "grafana.tools.k8s.jwdevtools.cf"
+
+grafana.ini:
+  server:
+    root_url: "https://grafana.tools.k8s.jwdevtools.cf/"
+
+persistence:
+  enabled: true
+  storageClassName: default
+  size: 10Gi
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: "http://prometheus-operator-prometheus:9090"
+        access: proxy
+        isDefault: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: default
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    # https://grafana.com/dashboards/
+
+    node-exporter:
+      gnetId: 11074
+      revision: 4
+      datasource: Prometheus
+    kube-deploy-statefulset:
+      gnetId: 8588
+      revision: 1
+      datasource: Prometheus
+    cluster-monitor:
+      gnetId: 10000
+      revision: 1
+      datasource: Prometheus
+    cluster-monitor-prom:
+      gnetId: 315
+      revision: 3
+      datasource: Prometheus
+
+    nginx-ingress-controller:
+      gnetId: 10187
+      revision: 1
+      datasource: Prometheus
+
+    nginx-ingress:
+      url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
+      datasource: Prometheus
+    argo-cd:
+      url: https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json
+      datasource: Prometheus

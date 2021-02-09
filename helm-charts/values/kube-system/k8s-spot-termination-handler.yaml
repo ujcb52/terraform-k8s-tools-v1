@@ -1,0 +1,13 @@
+# chart-repo: stable/k8s-spot-termination-handler
+
+nameOverride: k8s-spot-termination-handler
+
+clusterName: "jwtools-v1"
+
+podAnnotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  iam.amazonaws.com/role: "jwtools-v1-worker-asg"
+
+detachAsg: false
+
+slackUrl: "TS9MMJJHJ/B016515LG6B/f8d6XHrb2w9apUfurGGG1X8P"
