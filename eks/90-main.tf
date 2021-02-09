@@ -88,7 +88,7 @@ module "eks" {
       asg_desired_capacity    = 1
       kubelet_extra_args   = "--node-labels=node.kubernetes.io/lifecycle=mixed,node.type=system"
       public_ip            = false
-      key_name              = "k8s-tool-v1"
+      key_name              = "k8s-jtool-v1"
     },
     {
       name                    = "${var.cluster_name}-mixed-1"
@@ -102,7 +102,7 @@ module "eks" {
       asg_desired_capacity    = 1
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=mixed,node.type=service"
       public_ip               = false
-      key_name              = "k8s-tool-v1"
+      key_name              = "k8s-jtool-v1"
     },
     {
       name                    = "${var.cluster_name}-2xlarge"
@@ -116,7 +116,7 @@ module "eks" {
       asg_desired_capacity    = 1
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=mixed,node.type=big"
       public_ip               = false
-      key_name              = "k8s-tool-v1"
+      key_name              = "k8s-jtool-v1"
     },
   ]
 

@@ -6,22 +6,30 @@ variable "region" {
 variable "vpc_id" {
   description = "VPC where the cluster and workers will be deployed."
   type        = string
+  # for CLI - delete when terraform cloud. default
+  default = "vpc-0831aa5e23a225e1e"     
 }
 
 variable "subnets" {
   description = "A list of subnets to place the EKS cluster and workers within."
   type        = list(string)
+  # for CLI - delete when terraform cloud. default
+  default = ["subnet-0f79690f0cf3fd2e3", "subnet-096a35881f56fd424"]    
 }
 
 
 variable "cluster_name" {
   description = "Name of the EKS cluster. Also used as a prefix in names of related resources."
   type        = string
+  # for CLI - delete when terraform cloud. default 
+  default = "jtools-v1"  
 }
 
 variable "cluster_version" {
   description = "Kubernetes version to use for the EKS cluster."
   type        = string
+  # for CLI - delete when terraform cloud. default 
+  default = "1.18"
 }
 
 variable "map_accounts" {
